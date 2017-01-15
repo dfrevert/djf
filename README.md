@@ -1,2 +1,2 @@
 # hello-world
-This is a short description
+I program for a living.  I find this remarkable.

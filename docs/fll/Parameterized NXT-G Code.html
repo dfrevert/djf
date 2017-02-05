@@ -1,0 +1,35 @@
+<html><head><title>Parameterized NXT-G Code</title></head>
+<body>
+<p>Sunday September 17, 2006</p>
+<h1>Parameterized NXT-G code, a simple example.</h1>
+<p>By Doug Frevert</p>
+
+<p>First a definition of parameterized code.  It is a style of programming where a few values are set at the beginning of a program.  The values are parameters.  Those values are easy to change and so, the program is easily changed.<br />
+<img src="ParameterizeRectangleTeaser.png" alt="Setting up parameters"></p>
+
+<p>Imagine a robot driving around a rectangular table.  The robot will need to  <br />&nbsp;&nbsp;a) go straight and  <br />&nbsp;&nbsp;b) turn 90 degrees<br />&nbsp;&nbsp; four times.</p>
+
+<p>One of the tedious parts of the process is figuring out how far the motors must go.  If those values are entered on the individual Move blocks, the process is even more tedious.  In parameterized code, the values are stored in variables at the beginning of the program.  The variable values are then read and used where they are needed in the rest of the program.</p>
+
+<p>It sounds more difficult than it is.  Here is an example:<br />
+<img src="ParameterizeRectangle.png" alt="A parameterized rectangle in NXT-G"/></p>
+
+<p>To get around my dinning room table counterclockwise when viewed from above: FirstLeg=4500, SecondLeg=3200, Pivot90Deg=410.<br />Or clockwise: FirstLeg=3600, SecondLeg=4900, Pivot90Deg= -425  (note the negative pivot value!)
+</p>
+<p><b>NXT Memory required? 9.6K</b>  Considering the use of both Motor, Move, Variable, Logic and MyBlocks not much memory was used.</b>
+
+<p><b>So is parameterized code common in FLL programming?</b>  Sadly, no.  I do know that one team a couple of years ago used it extensively.  The judges loved it.</p>
+
+<p>All of which leads me to the starting point of this article.  I keep building robots only to find they go backward instead of forward.   It's not a big deal, I could just think backwards when I program, but I'm not that smart.  And I'm much too lazy.  So here's my solution, a MyBlock that is 1 or -1.<br />
+<img src="MbRobotFwdType_valueNegOne.png" alt="A MyBlock that is 1 or -1.">
+
+<p>And here's where that value is used, a series of MyBlocks that do the obvious.  They go forward/backward, spin or pivot.  <br />Here's a pivot:
+<img src="MbPivotBwithRobotType.png" alt="Pivot around a stationary B motor using the +1/-1 MyBlock."></p>
+
+<p>Now when I build a new robot and what had been forward is backward, all I need to change is one MyBlock and all my old programs work.  (Ok, not all of them work, but a lot of them do.)</p>
+
+<p>Oh, by the way -- there are better solutions for this problem.  An FLL team is going to find one.  This judge looks forward to it.</p>
+
+<p>Doug</p>
+</body>
+</html>

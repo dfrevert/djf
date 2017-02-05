@@ -1,0 +1,111 @@
+<html><head><title>SAMS RoboLab Programs</title></head>
+
+<body>
+<h1>SAMS RoboLab Programs</h1>
+<p>These are all the programs and <a href="sams_subvis.htm">subvis</a> used to perform the FLL 2003 Mission to Mars tasks.  SAMS did not attempt the task that pushed the habitation modules together.  They did have a program for the task, but did not have enough time.  The tasks that SAMS performed took about 2:20, which only left ten seconds to spare.</p>
+<p>One motor (A) powered the left rear wheels and another motor (C) powered the right rear wheels.  The large front wheels were unpowered and ran on the white rims so they could slip when the robot turned.  The third motor (B) raised or lowered an arm on the front of the robot.</p>
+<p>Some of the programs require a special attachment to the arm.  Those attachments are described below.</p>
+<h2>SAMS Robot wiring</h2>
+<table border="1" >
+	<tr align="center"><th>RCX Connection</th><th>Input or Output  </th></tr>
+	<tr align="center"><td>A             </td><td>left drive motor </td></tr>
+	<tr align="center"><td>B             </td><td>arm motor        </td></tr>
+	<tr align="center"><td>C             </td><td>right drive motor</td></tr>
+	<tr align="center"><td>1             </td><td>rotation sensor <br />
+								                  connected to <br />
+								                  left wheel's axle</td></tr>
+	<tr align="center"><td>2             </td><td>left front light sensor<br />
+								   and<br />
+								   front touch sensor</td></tr>
+	<tr align="center"><td>3             </td><td>right front light sensor
+													</td></tr>
+</table>
+<hr />
+<h2>Slot #1: Get the Ice Cores <font color="red">or</font> Drive into the Crater</h2>
+<p>Arm: A long arm with a hook at the end and a crossbar to keep the ice cores from dragging on the ground.  The arm was removed after the mission.</p>
+<p>Note: The touch sensor on the front of the robot was used to split this program (slot #1) into two modes of operation.  A 2x2 angle was place over the touch sensor to run the "Into the Crater" mode.  Because the touch sensor and a light sensor were stacked on input port #2, the test for the touch sensor used the a light sensor fork command.  A value greater than 70 indicates that the touch sensor is pushed.</p>
+	<IMG SRC="ice_cores_v5_vi.gif" BORDER="0" USEMAP="#ice_cores" width=708 height=431 alt="Program loaded into RCX Slot #1">
+	<MAP NAME="ice_cores">
+	<area shape="rect" coords="64,187,96,219"   href="sams_subvis.htm#forward_sub_ice"   alt="Forward along a wall SubVi">
+	<area shape="rect" coords="111,192,143,224" href="sams_subvis.htm#counting_black_lines_2_sub_vi" alt="Forward while Counting Black lines version 2 SubVi">
+	<area shape="rect" coords="165,196,197,228" href="sams_subvis.htm#forward_sub_ice"   alt="Forward along a wall SubVi">
+	<area shape="rect" coords="291,185,323,217" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<area shape="rect" coords="268,253,300,285" href="sams_subvis.htm#left_spin_sub_vi"  alt="Left Spin SubVi">
+	<area shape="rect" coords="313,262,345,294" href="sams_subvis.htm#arm_up_sub_vi"     alt="Arm Up SubVi">
+	<area shape="rect" coords="358,278,390,310" href="sams_subvis.htm#right_spin_sub_vi" alt="Right Spin SubVi">
+	<area shape="rect" coords="403,277,435,309" href="sams_subvis.htm#backward_sub_ice"  alt="Backward along a wall SubVi">
+	<area shape="rect" coords="456,278,488,310" href="sams_subvis.htm#backward_sub_ice"  alt="Backward along a wall SubVi">
+
+    <map>
+
+<hr />
+<h2>Slot #2: Drop the Gate and Sweep the Solar Panel</h2>
+<p>Starting the robot from the tetrahedron base, a brush attachment was added to the back left corner of the robot.  The attachment brushed the dust off the solar panel.  The brush was removed when the robot returned to the base.</p>
+<p>Note: The arm is lowered at the end of the run to prepare the arm for the next task.</p>
+	<IMG SRC="sweep_the_solar_panel4.gif" BORDER="0" USEMAP="#sweep" width=587 height=281 alt="Program loaded into RCX Slot #2">
+	<MAP NAME="sweep">
+	<area shape="rect" coords="54,165,86,197"   href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<area shape="rect" coords="106,165,138,197" href="sams_subvis.htm#right_spin_sub_vi" alt="Right Spin SubVi">
+	<area shape="rect" coords="146,164,178,196" href="sams_subvis.htm#backward_sub_vi"   alt="Backward SubVi">
+	<area shape="rect" coords="201,162,233,194" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<area shape="rect" coords="274,164,306,196" href="sams_subvis.htm#right_spin_sub_vi" alt="Right Spin SubVi">
+	<area shape="rect" coords="324,164,356,196" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<area shape="rect" coords="377,165,409,197" href="sams_subvis.htm#right_spin_sub_vi" alt="Right Spin SubVi">
+	<area shape="rect" coords="429,162,461,194" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<area shape="rect" coords="474,162,506,194" href="sams_subvis.htm#arm_down_sub_vi"   alt="Arm Down SubVi">
+    <map>
+
+<hr />
+<h2>Slot #3: Drop Ball into MAV Launcher</h2>
+<p>Arm: A ball drop arm was added to extend the existing arm.  The same arm was used in the next task.</p>
+<p>Note: SAMS redesigned this task after having experiencing difficulties at regionals.  The previous program relied on precise positioning.  By using a line detector, the robot only required accurate aiming.</p>
+	<IMG SRC="launcherwline_counter_2.gif" BORDER="0" USEMAP="#launcher" width=656 height=428 alt="Program loaded into RCX Slot #3">
+	<MAP NAME="launcher">
+	<area shape="rect" coords="80,150,112,182"  href="sams_subvis.htm#counting_black_lines_sub_vi" alt="Forward until the past the nth black line SubVi">
+	<area shape="rect" coords="119,162,151,194" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<area shape="rect" coords="162,180,194,210" href="sams_subvis.htm#arm_down_sub_vi"   alt="Arm Down SubVi">
+	<area shape="rect" coords="297,180,329,210" href="sams_subvis.htm#arm_up_sub_vi"     alt="Arm Up SubVi">
+	<area shape="rect" coords="342,179,374,209" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<area shape="rect" coords="413,188,435,220" href="sams_subvis.htm#backward_sub_vi"   alt="Backward SubVi">
+    <map>
+
+<hr />
+<h2>Slot #4: Drop Housing Modules in a V <font color="red">or</font> Calibrate the Light Sensor</h2>
+<p>The arm carries two housing modules over the MAV launcher and drops them onto the existing housing module.  Two blue rubber bands connect the arm to a brace that connect the housing modules together.  When the arm is lowered, magnets on the housing modules lock together and the rubber bands release. The rubber bands are left on the table.</p>
+<p>The second mode of operation calibrates that light sensor.  Container #4 holds a number representing black plus three.  A typical value was 37.</p>
+	<IMG SRC="housing_united_and_setlightcenter.gif" BORDER="0" USEMAP="#housing" width=418 height=453 alt="Program loaded into RCX Slot #4">
+	<MAP NAME="housing">
+	<area shape="rect" coords="159,177,191,209" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<area shape="rect" coords="205,178,237,210" href="sams_subvis.htm#arm_down_sub_vi"   alt="Arm down SubVi">
+	<area shape="rect" coords="245,176,277,208" href="sams_subvis.htm#backward_sub_vi"   alt="Backward SubVi">
+    <map>
+
+<hr />
+<h2>Slot #5: Get the rover off the sand dune and drive into the crater</h2>
+<p>Arm: A "bulldozer" extension to the existing arm that was set to travel about two inches above the ground.  This program was the last program developed by the SAMS team.  The programming comments were not completed.</p>
+	<IMG SRC="get_the_rover_vi_3.gif" BORDER="0" USEMAP="#rover" width=778 height=297 alt="Program loaded into RCX Slot #5">
+	<MAP NAME="rover">
+	<area shape="rect" coords="64,125,96,157"   href="sams_subvis.htm#counting_black_lines_2_sub_vi" alt="Forward until the past the nth black line version 2 SubVi">
+	<area shape="rect" coords="109,125,141,157" href="sams_subvis.htm#left_spin_sub_vi" alt="Spin Left SubVi">
+    <area shape="rect" coords="148,127,180,159" href="sams_subvis.htm#counting_black_lines_2_sub_vi" alt="Forward until the past the nth black line version 2 SubVi">
+	<area shape="rect" coords="187,127,219,159" href="sams_subvis.htm#left_spin_sub_vi" alt="Spin Left SubVi">
+    <area shape="rect" coords="233,125,265,157" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+
+	<area shape="rect" coords="272,123,305,155" href="sams_subvis.htm#left_spin_sub_vi" alt="Spin Left SubVi">
+    <area shape="rect" coords="311,113,343,145" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<area shape="rect" coords="346,113,378,145" href="sams_subvis.htm#backward_sub_vi"   alt="Backward SubVi">
+    <area shape="rect" coords="385,113,417,145" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<area shape="rect" coords="428,112,460,144" href="sams_subvis.htm#backward_sub_vi"   alt="Backward SubVi">
+
+	<area shape="rect" coords="521,110,553,142" href="sams_subvis.htm#left_spin_sub_vi" alt="Spin Left SubVi">
+    <area shape="rect" coords="580,118,612,150" href="sams_subvis.htm#forward_sub_vi"    alt="Forward SubVi">
+	<map>
+
+<hr />
+<a href="At_Sandburg.htm">SAMS at the Sandburg Regional</a><br />
+<a href="sams_at_state.htm">SAMS at the Minnesota State FLL Competition</a><br />
+<a href="http://mn.hightechkids.org">MN HighTechKids site</a><br />
+<hr />
+<small><a href="mailto:dfrevert@email.com">Doug Frevert</a></small>
+</body>
+</html>

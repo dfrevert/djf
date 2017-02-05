@@ -1,0 +1,29 @@
+<html><head><title>Copy and Paste is too easy.</title></head>
+<body>
+<p>Sunday September 9, 2007</p>
+<h1>Copy and Paste is too easy.</h1>
+<p>By Doug Frevert</p>
+<p>The 2007 FLL season has begun. We've adjusted the training courses.</p>
+<p>Once again, in preparing to teach I discovered something. <b>NXT-G WaitFor Blocks don't have a DataHub.</b> Without a DataHub, how useful is a MyBlock?<p>
+<p><img src="BlockWaitForLight.png"><br />
+<i>WaitFor Light 50 percent -- has no data hub.</i></p>
+<h2>Copy and Paste is too easy.</h2>
+<p>One of the recurring problems of programming is that copying existing code and pasting it is too easy.  Lots of duplicated code is difficult to maintain.  One bug found, needs to also be found in every duplicate.</p>
+<p>One of the course labs asks the robot to stop at a line found using the light sensor.  The WaitFor Block, setup for light, works.  Copy and paste it once for every line.  Inside every WaitFor Block is the light threshold setting.  Let everyone get their robot working.  Now change the room lighting.  Do you see the problem?</p>
+<img src="AtoBtoCtoD_byLightSensor.png"><br />
+<p>Copy and Paste and changes become tiresome.<p>
+<h2>Choices for Storing the Light Threshold</h2>
+<ol><li>A MyBlock.</li>
+    <li>A Global Variable.</li>
+    <li>A Local Variable that is passed as a parameter to a MyBlock.</li>
+</ol>
+<p>Each has an advantage.  The #3's advantage is the value is set in the program using it.  When debugging program A, having the light threshold setting visible in program A makes sense.</p>
+<h2>The problem: WaitFor has no DataHub</h2>
+<p>Without a DataHub, the WaitFor can not accept a wired in value for the light sensor threshold.  #2 and #3 are impossible.</p>
+<p>OK, not impossible.  It just takes a bit more programming.</p>
+<p>And that is part of the fun of FLL.  Some teams reach a roadblock like this and turn around.  Some keep looking and find a way.</p>
+<p><b>Others are lucky enough to take classes and ask the right questions.</b></p>
+<hr />
+<p>Doug</p>
+</body>
+</html>

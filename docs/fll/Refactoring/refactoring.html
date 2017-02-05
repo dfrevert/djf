@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>Refactoring -- A RoboLab Example</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<h2>Refactoring</h2>
+<p>Programmers need an odd set of skills.  They need creativity to develop solutions and the discipline to test that those solutions work.  Then, they need the patience to find and fix any bugs that appear.  This isn't about those skills.</p>
+<p>Programmers also need the ability to look at existing solutions, tear them apart, and put them back together.  Not to make the solutions work, they already work; to make them work better.  Generally better means simpler, more reusable, and more robust.  Programmers call this process of remaking working code, refactoring.</p>
+<p>At the recent FLL competition, this judge saw several awesome displays of programming.  Yet, each could have been better; could have refactored their code.</p>
+<p>Refactoring isn't mentioned in the FLL judging rubric, but the level of programming has risen so high that the rubric needs a rewrite.</p>
+<p>That I saw, two teams used NXT systems together with RoboLab 2.9 at the FLL competition.  Each team used local subroutines in their code to save memory space on the NXT.  A "simple" example of such code might look like the code below.  There's a lot of code.  All it does is drive forward, lift the arm, and drive back.</p>
+<p>It's complicated; it works, so it's impressive.  A judge should be impressed.</p>
+<p><a name="Step0" /> <a href="#Step0">Original</a> <a href="#Step1">1</a> <a href="#Step2">2</a>  <a href="#Step3">3</a> <a href="#Step4">4</a> <a href="#Step5">5</a> <a href="#Step6">6</a> </p>
+<p><img src="Refactor0.png" alt="Original" /></p>
+<hr />
+<h3>Step 1 -- 20, 20, 20, 20, ...</h3>
+<p>See all the "20"s in the program.  "20" is a magic number.  It represents the container number that holds the rotation forward/backward. It has a meaning that the programmer knows.  The other team members might know.  So much better to set the number in one place.  RoboLab allows the use of wires to link to a single "20", but wires are too complicated.  The better solution is to create a SubVI to hold the "20".  Here is that SubVI:</p>
+<p><img src="Container20.png" alt="Container 20"/></p>
+<hr />
+<p>Replacing all the "20"s with the new SubVI yields:</p>
+<p><a name="Step1" /> <a href="#Step0">Original</a> <a href="#Step1">1</a> <a href="#Step2">2</a>  <a href="#Step3">3</a> <a href="#Step4">4</a> <a href="#Step5">5</a> <a href="#Step6">6</a> </p>
+<p><img src="Refactor1.png" alt="Step 1" /></p>
+<hr />
+<h3>Step 2 -- 19, 19, 19, 19, ...</h3>
+<p>The "19"s represent the container number holding the arm movement. Repeat step 1 for the "19"s. A similar SubVI is created. After the replacements:</p>
+<p><a name="Step2" /> <a href="#Step0">Original</a> <a href="#Step1">1</a> <a href="#Step2">2</a>  <a href="#Step3">3</a> <a href="#Step4">4</a> <a href="#Step5">5</a> <a href="#Step6">6</a> </p>
+<p><img src="Refactor2.png" alt="Step 2"/></p>
+<p>This is better. Careful crafting of the SubVI icons gives us a sense of what they do.  No one is able to goof up by entering an "18" instead of a "19".</p>
+<hr />
+<h3>Step 3 -- 1, 1, 1, ... 2, 2, 2, ... </h3>
+<p>This should be getting repetitious.  Find the magic numbers, put them into a SubVI.  In this case the "1"s represent the number of the local subroutine that handles moving forward/backward.</p>
+<p>Here are LocalSubroutine1 and 2 SubVIs:</p>
+<p><img src="Subroutine1.png" alt="Local Subroutine 1" />&nbsp;&nbsp;<img src="Subroutine2.png" alt="Local Subroutine 2" /></p>
+<hr />
+<p>Replacing all the "1"s and "2"s yields:</p>
+<p><a name="Step3" /> <a href="#Step0">Original</a> <a href="#Step1">1</a> <a href="#Step2">2</a>  <a href="#Step3">3</a> <a href="#Step4">4</a> <a href="#Step5">5</a> <a href="#Step6">6</a> </p>
+<p><img src="Refactor3.png" alt="Step 3" /></p>
+<hr />
+<h3>Step 4 -- The absolute value SubVI</h3>
+<p>So far, the refactoring has been simple.  See the magic number, create a SubVi and use it to replace the magic number.  Some refactorings are more complicated.  Instead of see the magic number, think find the duplication.  Create a SubVI to handle the duplication.</p>
+<p>In the code that defines LocalSub1 and LocalSub2, there is duplication in the section of code that performs container math. Instead of replacing a single icon, this SubVI replaces 7 icons.</p>
+<p>Here is the AbsoluteValue SubVI:</p>
+<p><img src="AbsoluteValueOfContainer.png" alt="Absolute Value" /></p>
+<hr />
+<p>Replacing it, in two places yields:</p>
+<p><a name="Step4" /> <a href="#Step0">Original</a> <a href="#Step1">1</a> <a href="#Step2">2</a>  <a href="#Step3">3</a> <a href="#Step4">4</a> <a href="#Step5">5</a> <a href="#Step6">6</a> </p>
+<p><img src="Refactor4.png" alt="Step 4" /></p>
+<hr />
+<h3>Step 5 -- Selecting container 19 and 20.</h3>
+<p>Another simple refactoring to handle the selecting of container 19 or 20.  Note the crafting of the SubVI icons to combine the ideas of container selection, container number, and the use of the container (forward/backward and arm up/down).</p>
+<p>First the SubVIs SelectContainer19 and 20.</p>
+<p><img src="SelectContainer19.png" alt="Select Container 19" />&nbsp;&nbsp;<img src="SelectContainer20.png" alt="Select Container 20" /></p>
+<hr />
+<p>Replacment yields:</p>
+<p><a name="Step5" /> <a href="#Step0">Original</a> <a href="#Step1">1</a> <a href="#Step2">2</a>  <a href="#Step3">3</a> <a href="#Step4">4</a> <a href="#Step5">5</a> <a href="#Step6">6</a> </p>
+<p><img src="Refactor5.png" alt="Step 5"/></p>
+<hr />
+<h3>Step 6 -- Calling Subroutine 1 and 2.</h3>
+<p>The calls to run subroutine 1 (forward/backward) and 2 (arm up/down) now appear as obvious candidates for refactoring.  You may tempted to think that jumping directly to step 6 is obvious and quicker.  You are wrong.  Jumping directly creates larger groups of icons.  Those large groups are often not as reusable as smaller groups of icons.</p>
+<p>Here are the FowardBackward and ArmUpDown SubVIs. Note that the ArmUpDown SubVI violates the rule of finding duplication.  There is only one use of the ArmUpDown SubVI.  Sometimes it's ok to break the rules.</p>
+<p><img src="ForwardBackward.png" alt="ForwardBackward" />&nbsp;&nbsp;<img src="ArmUpDown.png" alt="ArmUpDown" /></p>
+<hr />
+<p>Replacment yields:</p>
+<p><a name="Step6" /> <a href="#Step0">Original</a> <a href="#Step1">1</a> <a href="#Step2">2</a>  <a href="#Step3">3</a> <a href="#Step4">4</a> <a href="#Step5">5</a> <a href="#Step6">6</a> </p>
+<p><img src="Refactor6.png" alt="Step 6" /></p>
+<hr />
+<h3>Summary</h3>
+<p>Refactoring makes your program better.  Refactoring takes many forms.  We've examined one form: removing duplication.  The result is not a program that works, since the original program worked.  The result is a program that also works.</p>
+<p>The result is also a program that is easier to understand.</p>
+<p>Is there more that should be refactored? Yes.  Is there a limit to how much should be refactored? Yes, when the duplication is gone.</p>
+<p>This judge expects to see the very best teams to understand refactoring at next year's FLL competition. They will impress this judge.</p>
+<p><i>Doug Frevert</i></p>
+<p>
+<a href="http://validator.w3.org/check?uri=referer"><img
+	src="http://www.w3.org/Icons/valid-xhtml10"
+	alt="Valid XHTML 1.0 Transitional" height="31" width="88" />
+</a>
+</p>
+</body>
+</html>
